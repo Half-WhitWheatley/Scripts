@@ -5,13 +5,12 @@
 $printserver = "name-of-print-server"
 
 # Outputs list of printers on print server
-Get-Printer -ComputerName "$printserver" |
-    Export-Csv -Path .\printers.csv -NoTypeInformation
+$printerlist = Get-Printer -ComputerName "$printserver"
 
 $printername = Read-Host -Prompt "What is the name of the printer you would like to add?"   
 
-# Checks printers.csv for matching printer name
-$propername = Select-String -InputObject <./printers.csv> -Pattern <*$printername*>
+# Checks $printerlist for matching printer name
+$propername = ($printerlist -match $printername)
 
 # Confirms with user that the printer name is correct before adding printer
 $Title = "Is $propername correct?"
