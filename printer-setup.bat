@@ -3,7 +3,11 @@
 :: Change "servername" to the name of your print server
 SET server=servername
 
+(powershell.exe -NoProfile -Command "& {Get-Printer -ComputerName "$printserver" | Select-Object -ExpandProperty Name}")> "printerlist.txt" 2>&1
+
 SET /p printer=what is the name of the printer?: 
+
+SET /p printer=FINDSTR /i /C:".*%printer%.*" printerlist.txt
 
 SET choice=
 SET /p choice=Is "%printer%" correct? [Y/N]: 
