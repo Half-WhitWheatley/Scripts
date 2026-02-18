@@ -7,7 +7,7 @@ SET server=servername
 
 SET /p printer=what is the name of the printer?: 
 
-SET /p printer=FINDSTR /i /C:".*%printer%.*" printerlist.txt
+FOR /F "tokens=*" %%A IN ('FINDSTR /i /C:%printer% printerlist.txt') DO SET printer=%%A
 
 SET choice=
 SET /p choice=Is "%printer%" correct? [Y/N]: 
