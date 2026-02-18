@@ -23,7 +23,7 @@ switch($Choice)
     0 { Add-Printer -ConnectionName \\$printserver\$propername
         Write-Host "Printer $propername added successfully!"
     }
-    1 { Write-Host "Sorry, please try again. Printer name typically starts with 'PRTI-'"
+    1 { Write-Host "Sorry, please try again."
     }
 }
 
