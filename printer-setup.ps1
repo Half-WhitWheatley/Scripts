@@ -5,7 +5,7 @@
 $printserver = "name-of-print-server"
 
 # Outputs list of printers on print server
-$printerlist = Get-Printer -ComputerName "$printserver"
+$printerlist = Get-Printer -ComputerName "$printserver" | Select-Object -ExpandProperty Name
 
 $printername = Read-Host -Prompt "What is the name of the printer you would like to add?"   
 
@@ -28,9 +28,4 @@ switch($Choice)
 }
 
 Write-Host "Press Any Key To Exit"
-$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-
-
-
-
-
+$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
