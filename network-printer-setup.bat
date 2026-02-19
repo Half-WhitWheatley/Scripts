@@ -3,7 +3,7 @@
 :: Change "servername" to the name of your print server
 SET server=servername
 
-(powershell.exe -NoProfile -Command "& {Get-Printer -ComputerName "$printserver" | Select-Object -ExpandProperty Name}")> "printerlist.txt" 2>&1
+(powershell.exe -NoProfile -Command "& {Get-Printer -ComputerName "%server%" | Select-Object -ExpandProperty Name}")> "printerlist.txt" 2>&1
 
 SET /p printer=what is the name of the printer?: 
 
@@ -12,6 +12,7 @@ FOR /F "tokens=*" %%A IN ('FINDSTR /i /C:%printer% printerlist.txt') DO SET prop
 IF %properprinter%=="" (
     ECHO I could not find a printer name containing "%printer%". Please try again.
     ECHO.
+    PAUSE
     GOTO START
 )
 
